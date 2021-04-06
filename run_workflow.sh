@@ -10,7 +10,7 @@ GX=$6
 
 # generate signal + compute cross-section
 cd generate_signal
-bash run.sh $DSID $MZP $MDM $MDM $GQ $GX
+bash run.sh $DSID $MZP $MDH $MDM $GQ $GX
 cd -
 
 # obtain product of acceptance and efficiency

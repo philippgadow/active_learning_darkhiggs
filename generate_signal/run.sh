@@ -82,4 +82,4 @@ cd -
 python scripts/extractRunInfo.py -i "$EVGEN_WORKDIR/log.generate" -o "${OUTPUT_DIR}/xsec.json"
 
 # copy derivation file to output directory
-cp $DERIVATION_WORKDIR/DAOD_TRUTH1.test_DMSbb_100000.root ${OUTPUT_DIR}/
+cp $DERIVATION_WORKDIR/DAOD_TRUTH1.test_DMSbb_${DSID}.root ${OUTPUT_DIR}/
