@@ -22,7 +22,7 @@ source setup.sh
 # run over file
 mkdir -p $RUN_DIR
 cd $RUN_DIR
-simpleAnalysis -a ${ANALYSIS} ${INPUT_FILE}
+simpleAnalysis -s layout=run2 -a ${ANALYSIS} ${INPUT_FILE}
 cd -
 
 # copy file with acceptances to output directory
