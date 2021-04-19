@@ -7,10 +7,11 @@ MDH=$3
 MDM=$4
 GQ=$5
 GX=$6
+EVENTS=10000
 
 # generate signal + compute cross-section
 cd generate_signal
-bash run.sh $DSID $MZP $MDH $MDM $GQ $GX
+bash run.sh $DSID $MZP $MDH $MDM $GQ $GX $EVENTS
 cd -
 
 # obtain product of acceptance and efficiency
@@ -22,4 +23,9 @@ cd -
 # compare with cross-section limits for EtMiss + h(bb)
 cd evaluate_limits
 bash run.sh $DSID
+cd -
+
+# create json file with signal event yields per bin for pyhf
+cd evaluate_yields
+bash run.sh $DSID $MZP $MDH $MDM $GQ $GX $EVENTS
 cd -
