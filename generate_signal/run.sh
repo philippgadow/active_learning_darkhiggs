@@ -2,43 +2,13 @@
 ##############
 # parameters #
 ##############
-# # DSID - just for bookkeeping
-# if [[ -z "${DSID}" ]]; then
-#   DSID=100000
-# fi
-
-# # signal model parameters
-# # Z' boson mass
-# if [[ -z "${MZP}" ]]; then
-#   MZP=2500
-# fi
-
-# # dark Higgs boson mass
-# if [[ -z "${MDH}" ]]; then
-#   MDH=150
-# fi
-
-# # dark matter particle mass
-# if [[ -z "${MDM}" ]]; then
-#   MDM=200
-# fi
-
-# # coupling of Z' boson to quarks
-# if [[ -z "${GQ}" ]]; then
-#   GQ=0.25
-# fi
-
-# # dark sector coupling
-# if [[ -z "${GX}" ]]; then
-#   GX=1.0
-# fi
-
 DSID=$1
 MZP=$2
 MDH=$3
 MDM=$4
 GQ=$5
 GX=$6
+EVENTS=$7
 
 # generate signal point and associated TRUTH1 derivation in one go for testing
 EVNT_FILE="test_DMSbb_${DSID}.EVNT.root"
@@ -64,7 +34,7 @@ cd $EVGEN_WORKDIR
 Gen_tf.py \
     --ecmEnergy=13000. \
     --firstEvent=1 \
-    --maxEvents=-1 \
+    --maxEvents=$EVENTS \
     --jobConfig=$DSID \
     --outputEVNTFile=$EVNT_FILE
 cd -

@@ -27,4 +27,5 @@ cd -
 
 # copy file with acceptances to output directory
 cp $RUN_DIR/${ANALYSIS}.txt ${INPUT_DIR}/acceptances.txt
+cp $RUN_DIR/${ANALYSIS}.root ${INPUT_DIR}/histograms.root
 cat ${INPUT_DIR}/acceptances.txt
