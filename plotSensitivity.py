@@ -44,6 +44,7 @@ def prepareDataFrame(data, sensitivities):
     # prepare dataframe
     df = df.replace(r'^\s*$', np.nan, regex=True)
     df = df.astype(float).dropna()
+    df.to_csv('sensitivity.csv')
     df = df[df['mdm'] == 200.]
     df = df.pivot('ms', 'mzp', 'sensitivity')
 
@@ -154,7 +155,7 @@ def main():
     
     plotHeatmap(df)
     plotContour(df)
-    
+
 
 if __name__ == '__main__':
     main()
