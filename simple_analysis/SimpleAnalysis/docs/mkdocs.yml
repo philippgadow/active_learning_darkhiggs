@@ -1,0 +1,67 @@
+site_url: https://simpleanalysis-internal.docs.cern.ch
+
+nav:
+  - 'Home': 'README.md'
+  - 'Advanced topics':
+    - 'Cross-sections': 'tutorial/crosssections.md'
+    - 'HEPdata': 'tutorial/acceptance.md'
+    - 'Theory uncertainties': 'tutorial/theo_uncertainties.md'
+    - 'ML methods': 'tutorial/bdt.md'
+    - 'Smearing': 'tutorial/smearing.md'
+  - 'Public Docs': https://simpleanalysis.docs.cern.ch
+
+# Below should be synced with ATLAS public's mkdocs.yml
+
+site_name: SimpleAnalysis
+site_description: Documentation for SimpleAnalysis Truth-Level Analysis Framework
+site_author: ATLAS Collaboration
+
+repo_name: GitLab
+repo_url: https://gitlab.cern.ch/atlas-phys-susy-wg/SimpleAnalysis
+docs_dir: src
+edit_uri: 'blob/master/docs/src'
+
+theme:
+  palette:
+    scheme: preference
+    primary: blue
+    accent: light blue
+  name: material
+  icon:
+    logo: octicons/rocket-16
+    repo: fontawesome/brands/gitlab
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML
+  - https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js
+  - javascripts/tables.js
+
+extra_css:
+  - stylesheets/extra.css
+
+plugins:
+  - search
+
+markdown_extensions:
+  - toc:
+      permalink: True
+  - admonition
+  - codehilite
+  - pymdownx.highlight:
+      linenums: true
+      linenums_style: pymdownx.inline
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.tabbed
+  - pymdownx.superfences

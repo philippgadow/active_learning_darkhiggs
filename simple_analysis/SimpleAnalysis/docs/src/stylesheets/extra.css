@@ -1,0 +1,4 @@
+/* fix box shadow for dark theme */
+body[data-md-color-scheme="slate"] .md-typeset table:not([class]) {
+  box-shadow: 0 0.2rem 0.5rem rgba(255,255,255,.05), 0 0 0.05rem rgba(255,255,255,.1);
+}

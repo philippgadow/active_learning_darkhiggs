@@ -1,0 +1,8 @@
+#!/bin/bash
+
+source $ROOTCOREDIR/scripts/external_download.sh
+
+./configure --prefix="$target" --enable-silent-rules --silent
+make clean
+make -j $ROOTCORE_NCPUS 
+make install

@@ -1,0 +1,10 @@
+stages:
+  - check
+
+clang-format:
+  stage: check
+  image:
+    name: kratsg/clang-format
+    entrypoint: [""]
+  script:
+    - run-clang-format -r .

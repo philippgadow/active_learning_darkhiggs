@@ -1,0 +1,4 @@
+# used by run-clang-format in docker image
+./SimpleAnalysisCodes
+./src
+*objres*

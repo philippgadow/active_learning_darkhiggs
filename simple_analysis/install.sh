@@ -2,7 +2,7 @@
 export ATLAS_LOCAL_ROOT_BASE=/cvmfs/atlas.cern.ch/repo/ATLASLocalRootBase
 source /cvmfs/atlas.cern.ch/repo/ATLASLocalRootBase/user/atlasLocalSetup.sh
 lsetup git
-asetup AnalysisBase,21.2.100
+asetup AnalysisBase,21.2.169
 
 if [ ! -d "SimpleAnalysis" ] 
 then

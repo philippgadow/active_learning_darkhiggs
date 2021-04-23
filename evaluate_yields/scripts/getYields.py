@@ -37,7 +37,7 @@ def dumpYields(yields, args):
     with open(args.template) as f:
         output = f.read()
 
-    output = output.replace('#SIGNALNAME', args.signalname)
+    output = output.replace('#SIGNALNAME', args.signalname.replace('.', 'p'))
     output = output.replace('#MZP', args.mzp)
     output = output.replace('#MDH', args.mdh)
     output = output.replace('#MDM', args.mdm)

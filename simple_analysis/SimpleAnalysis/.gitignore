@@ -1,0 +1,8 @@
+*~
+athena/
+site/
+.idea
+.cache
+.local
+.DS_Store
+.project

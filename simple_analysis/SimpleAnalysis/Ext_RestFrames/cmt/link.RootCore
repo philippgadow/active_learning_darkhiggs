@@ -1,0 +1,3 @@
+#!/bin/bash
+
+$ROOTCOREDIR/scripts/external_link.sh

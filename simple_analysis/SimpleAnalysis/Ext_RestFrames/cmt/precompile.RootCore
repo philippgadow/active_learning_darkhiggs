@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+$ROOTCOREDIR/scripts/external_compile.sh

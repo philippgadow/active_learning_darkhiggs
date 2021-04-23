@@ -1,0 +1,44 @@
+# whether we should always build a local version of the library, even
+# if another version is present
+force_local = no
+
+# whether we allow using a system-wide library if present
+allow_global = no
+
+# the list of all locations to try.  these should either be a simple
+# directory name or of the form incdir:libdir.  in the former case the
+# assumption is that the header files are inside dir/include and the
+# library files inside dir/lib.  if you want more locations added to
+# the SVN version of the package notify me.
+locations =
+
+# where this library is located inside $SITEROOT, or an empty string
+# if it is not available in $SITEROOT
+siteroot =
+
+# these options are used to configure which version of the library is
+# downloaded and configured.  normally users should have no need to
+# modify this.
+
+# the url from which to download
+url = $ROOTCOREBIN/data/Ext_RestFrames/tarball
+
+# the md5 checksum of the file
+md5sum = 668e3ca6f301172d7e67b5e85b1ab6d2
+
+# the name of the directory containing the sources
+src_dir = RestFrames-1.0.1
+
+
+# the following options should normally not be touched.  they are used
+# by the RootCore scripts that need to compile and link this package
+
+# the name of the package
+name = RestFrames
+
+# the name of the subdirectory inside the include directory that
+# corresponds to this package.
+incname = RestFrames
+
+# the prefix with which libraries for this package start.
+libname = libRestFrames lib
