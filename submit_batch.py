@@ -60,19 +60,9 @@ def submitJob(batch_dir, dsid, mzp, mdh, mdm, gq, gx):
       submitJob.handler = setupCondorHandler(batch_dir)
 
   # command on htcondor host:
-  # write output to /tmp dir on batch machine and not directly to output folder
-  # to enhance performance by avoiding long access of shared filesystems
-  # command = "rm -rf /tmp/{0} && mkdir -p /tmp/{0} && ".format(tag)
-  # command = "export DSID={0} && ".format(dsid)
-  # command = "export MZP={0} && ".format(mzp)
-  # command = "export MDH={0} && ".format(mdh)
-  # command = "export MDM={0} && ".format(mdm)
-  # command = "export GQ={0} && ".format(gq)
-  # command = "export GX={0} && ".format(gx)
   command = "cd {workdir} && bash {workdir}/run_workflow.sh {dsid} {mzp} {mdh} {mdm} {gq} {gx}".format(
     workdir=workdir, dsid=dsid, mzp=mzp, mdh=mdh, mdm=mdm, gq=gq, gx=gx
     )
-  # command += "cp /tmp/{0}/* {1} && rm -rf /tmp/{0}".format(tag, out_dir)
 
   # submitJob.handler.activate_testmode()
   submitJob.handler.send_job(command, tag)
