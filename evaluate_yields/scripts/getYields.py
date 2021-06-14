@@ -1,5 +1,6 @@
 import uproot
 import json
+import csv
 from argparse import ArgumentParser
 from os.path import join
 
@@ -7,7 +8,7 @@ from os.path import join
 def getArgumentParser():
     parser = ArgumentParser()
     parser.add_argument('inputFile')
-    parser.add_argument('-e', '--events', type=float, help='Number of generated events')
+    parser.add_argument('-a', '--acceptances', help='Path to txt file containing acceptances after SimpleAnalysis')
     parser.add_argument('-x', '--cross_section', help='Path to json file containing cross-section (in fb)')
     parser.add_argument('-l', '--luminosity', type=float, default=139., help='Luminosity (in fb)')
     parser.add_argument('-t', '--template', default=join('data', 'patch_template.json'), help='Path to json file template')
@@ -19,6 +20,15 @@ def getArgumentParser():
     parser.add_argument('--gq', default='0.25')
     parser.add_argument('--gx', default='1.00')
     return parser
+
+
+def getInitialEvents(fName):
+    with open(fName) as f:
+        reader = csv.DictReader(f, delimiter=',')
+        for row in reader:
+            if row['SR'] == 'All':
+                return float(row['acceptance'])
+    return -1
 
 
 def getCrossSection(fName):
@@ -52,6 +62,7 @@ def dumpYields(yields, args):
 def main():
     args = getArgumentParser().parse_args()
     cross_section = getCrossSection(args.cross_section)
+    events = getInitialEvents(args.acceptances)
 
     yields = {}
     with uproot.open(args.inputFile) as f:
@@ -66,7 +77,7 @@ def main():
         yields['MET500_3b'] = f['MET500_3b'].values()
 
     for k in yields.keys():
-        yields[k] *= (args.luminosity * cross_section / args.events)
+        yields[k] *= (args.luminosity * cross_section / events)
 
     output_string = dumpYields(yields, args)
     with open(args.output_file, 'w') as f:
