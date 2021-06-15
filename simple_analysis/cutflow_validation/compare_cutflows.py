@@ -1,6 +1,16 @@
 import uproot
 from os.path import join
+from argparse import ArgumentParser
+import numpy as np
+import matplotlib.pyplot as plt
 
+
+def getArgumentParser():
+    parser = ArgumentParser()
+    parser.add_argument('inputFile_xamppanalysis')
+    parser.add_argument('inputFile_simpleanalysis')
+    parser.add_argument('dsid')
+    return parser
 
 def relative_efficiency(cutflow, i):
     return float(cutflow[i]) / float(cutflow[i-1])
@@ -8,11 +18,23 @@ def relative_efficiency(cutflow, i):
 def base_efficiency(cutflow, i):
     return float(cutflow[i]) / float(cutflow[0])
 
+def plotCutFlow(h_xampp, h_simpleanalysis, labels, output):
+    fig, ax = plt.subplots()
+    ax.plot(h_xampp, '+')
+    ax.plot(h_simpleanalysis, '+')
+    ax.set_xticks(np.arange(len(labels)))
+    ax.set_xticklabels(labels)
+    plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
+        rotation_mode="anchor")
+    fig.tight_layout()
+    fig.savefig('{output}.png'.format(output=output))
+
 def main():
     # get input files
-    f_simpleanalysis = join('data', 'xampp_312363_simpleana_100022_monoSbb_zp2000_dm200_dh130', 'histograms.root')
-    f_xampp_mc16a = join('data', 'xampp_312363_simpleana_100022_monoSbb_zp2000_dm200_dh130', 'user.changqia.22265276.XAMPP._000001.root')
-    dsid = '312363'
+    args = getArgumentParser().parse_args()
+    f_simpleanalysis = args.inputFile_simpleanalysis
+    f_xampp_mc16a = args.inputFile_xamppanalysis
+    dsid = args.dsid
 
     # get cutflow histograms
     with uproot.open(f_simpleanalysis) as f:
@@ -20,8 +42,8 @@ def main():
         cutflow_simpleanalysis_resolved = f['Cutflow_resolved']
  
     with uproot.open(f_xampp_mc16a) as f:
-        cutflow_xampp_merged = f['Histos_0L_SR_Merged_Nominal/InfoHistograms/DSID_312363_CutFlow']
-        cutflow_xampp_resolved = f['Histos_0L_SR_Resolved_Nominal/InfoHistograms/DSID_312363_CutFlow']
+        cutflow_xampp_merged = f['Histos_0L_SR_Merged_Nominal/InfoHistograms/DSID_{dsid}_CutFlow'.format(dsid=dsid)]
+        cutflow_xampp_resolved = f['Histos_0L_SR_Resolved_Nominal/InfoHistograms/DSID_{dsid}_CutFlow'.format(dsid=dsid)]
     
 
     cuts_merged = [
@@ -99,6 +121,7 @@ def main():
                          '\n'
     with open('cutflow_{dsid}_merged.csv'.format(dsid=dsid), 'w') as f:
         f.write(output_merged)
+    plotCutFlow(v_cutflow_xampp_merged, v_cutflow_simpleanalysis_merged, cuts_merged, 'cutflow_{dsid}_merged'.format(dsid=dsid))
 
     output_resolved = header + '\n'
     for i, cut in enumerate(v_cutflow_simpleanalysis_resolved):
@@ -112,6 +135,7 @@ def main():
                            '\n'
     with open('cutflow_{dsid}_resolved.csv'.format(dsid=dsid), 'w') as f:
         f.write(output_resolved)
+    plotCutFlow(v_cutflow_xampp_resolved, v_cutflow_simpleanalysis_resolved, cuts_resolved, 'cutflow_{dsid}_resolved'.format(dsid=dsid))
 
 if __name__ == '__main__':
     main()
