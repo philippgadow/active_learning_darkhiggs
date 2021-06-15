@@ -26,6 +26,7 @@ def plotCutFlow(h_xampp, h_simpleanalysis, labels, output):
     ax.set_xticklabels(labels)
     plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
         rotation_mode="anchor")
+    ax.set_ylabel('Cut efficiency')
     fig.tight_layout()
     fig.savefig('{output}.png'.format(output=output))
 
@@ -110,32 +111,44 @@ def main():
     header = 'cut,events_xampp,events_simpleanalysis,efficiency_xampp,efficiency_simpleanalysis,relativeefficiency_xampp,relativeefficiency_simpleanalysis'
 
     output_merged = header + '\n'
+    efficiency_merged_xp = []
+    efficiency_merged_sa = []
     for i, cut in enumerate(v_cutflow_simpleanalysis_merged):
         if i == 0: continue
         cut_xp = v_cutflow_xampp_merged[i]
         cut_sa = v_cutflow_simpleanalysis_merged[i]
+        eff_xp = base_efficiency(v_cutflow_xampp_merged, i)
+        eff_sa = base_efficiency(v_cutflow_simpleanalysis_merged, i)
         output_merged += cuts_merged[i] + ',' + \
                          str(cut_xp) + ',' + str(cut_sa) + ',' + \
-                         str(base_efficiency(v_cutflow_xampp_merged, i)) + ',' + str(base_efficiency(v_cutflow_simpleanalysis_merged, i)) + ',' + \
+                         str(eff_xp) + ',' + str(eff_sa) + ',' + \
                          str(relative_efficiency(v_cutflow_xampp_merged, i)) + ',' + str(relative_efficiency(v_cutflow_simpleanalysis_merged, i)) + \
                          '\n'
+        efficiency_merged_xp.append(eff_xp)
+        efficiency_merged_sa.append(eff_sa)
     with open('cutflow_{dsid}_merged.csv'.format(dsid=dsid), 'w') as f:
         f.write(output_merged)
-    plotCutFlow(v_cutflow_xampp_merged, v_cutflow_simpleanalysis_merged, cuts_merged, 'cutflow_{dsid}_merged'.format(dsid=dsid))
+    plotCutFlow(efficiency_merged_xp, efficiency_merged_sa, cuts_merged, 'cutflow_{dsid}_merged'.format(dsid=dsid))
 
     output_resolved = header + '\n'
+    efficiency_resolved_xp = []
+    efficiency_resolved_sa = []
     for i, cut in enumerate(v_cutflow_simpleanalysis_resolved):
         if i == 0: continue
         cut_xp = v_cutflow_xampp_resolved[i]
         cut_sa = v_cutflow_simpleanalysis_resolved[i]
+        eff_xp = base_efficiency(v_cutflow_xampp_resolved, i)
+        eff_sa = base_efficiency(v_cutflow_simpleanalysis_resolved, i)
         output_resolved += cuts_resolved[i] + ',' + \
                            str(cut_xp) + ',' + str(cut_sa) + ',' + \
                            str(base_efficiency(v_cutflow_xampp_resolved, i)) + ',' + str(base_efficiency(v_cutflow_simpleanalysis_resolved, i)) + ',' + \
                            str(relative_efficiency(v_cutflow_xampp_resolved, i)) + ',' + str(relative_efficiency(v_cutflow_simpleanalysis_resolved, i)) + \
                            '\n'
+        efficiency_resolved_xp.append(eff_xp)
+        efficiency_resolved_sa.append(eff_sa)
     with open('cutflow_{dsid}_resolved.csv'.format(dsid=dsid), 'w') as f:
         f.write(output_resolved)
-    plotCutFlow(v_cutflow_xampp_resolved, v_cutflow_simpleanalysis_resolved, cuts_resolved, 'cutflow_{dsid}_resolved'.format(dsid=dsid))
+    plotCutFlow(efficiency_resolved_xp, efficiency_resolved_sa, cuts_resolved, 'cutflow_{dsid}_resolved'.format(dsid=dsid))
 
 if __name__ == '__main__':
     main()
