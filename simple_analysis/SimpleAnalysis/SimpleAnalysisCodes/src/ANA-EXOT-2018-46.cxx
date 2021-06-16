@@ -160,17 +160,25 @@ void METHbb2018::ProcessEvent(AnalysisEvent *event) {
   // Higgs candidate reconstruction
   float mHiggs = 0.;
   float ptHiggs = 0.;
+  int nJetsMerged_inside = 0;
   int nBJetsMerged_inside = 0;
   int nBJetsMerged_outside = 0;
   if (met > 500) {
     if (fatJets.size() > 0) {
       mHiggs = fatJets[0].M();
       ptHiggs = fatJets[0].Pt();
-      for (const auto &jet : btrackjets) {
-        if (jet.DeltaR(fatJets[0]) < 1.)
-          nBJetsMerged_inside++;
-        else
-          nBJetsMerged_outside++;        
+      for (const auto &jet : trackJets) {
+        if (jet.DeltaR(fatJets[0]) < 1.) {
+          nJetsMerged_inside++;
+          // only consider leading two associated track jets for b-tagging
+          if (jet.pass(BTag77DL1) && nJetsMerged_inside < 3) {
+            nBJetsMerged_inside++;
+          }
+        } else {
+          if (jet.pass(BTag77DL1)) {
+            nBJetsMerged_outside++;
+          }
+        }
       }
     }
   } else {
@@ -194,10 +202,10 @@ void METHbb2018::ProcessEvent(AnalysisEvent *event) {
   // cuts in merged selection
   bool evtsel_met500 = (met > 500.);
   bool evtsel_nfatjets = (fatJets.size() >= 1);
-  bool evtsel_nbtrackjets = (btrackjets.size() >= 2);
+  bool evtsel_nbtrackjets = (nBJetsMerged_inside >= 2);
   bool evtsel_mass40_merged = (mHiggs > 40.);
   bool evtsel_massRange_merged = (mHiggs > 50. && mHiggs < 270.);
-  bool evtsel_nbtrackjets_associated = (nBJetsMerged_inside >= 2);
+  bool evtsel_ntrackjets_associated = (nJetsMerged_inside >= 2);
 
   // cuts in resolved selection
   bool evtsel_met150 = (met > 150.);
@@ -206,7 +214,8 @@ void METHbb2018::ProcessEvent(AnalysisEvent *event) {
   bool evtsel_nbjets = (nBjets >=2);
   bool evtsel_mass40_resolved = (mHiggs > 40.);
   bool evtsel_massRange_resolved = (mHiggs > 50. && mHiggs < 280.);
-  bool evtsel_metSig = (metSignificance > 12.);
+  // bool evtsel_metSig = (metSignificance > 12.);
+  bool evtsel_metSig = true; // not implemented on truth level due to poor agreement with reco-level
 
   bool evtsel_mt_mindR = (mt_min > 170.);
   bool evtsel_mt_maxdR = (mt_max > 200.);
@@ -298,7 +307,7 @@ void METHbb2018::ProcessEvent(AnalysisEvent *event) {
   } else{
     passCutFlow_Merged = false;
   }
-  if (passCutFlow_Preselection && passCutFlow_Merged && evtsel_nbtrackjets_associated) {
+  if (passCutFlow_Preselection && passCutFlow_Merged && evtsel_ntrackjets_associated) {
     fill("Cutflow_merged", 19); // N_associated_trkJets>=2
     fill("Cutflow_merged", 20); // (TrackJet_1passOR = true && TrackJet_2passOR = true)
   } else{
