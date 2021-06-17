@@ -13,7 +13,11 @@ def getArgumentParser():
     return parser
 
 def relative_efficiency(cutflow, i):
-    return float(cutflow[i]) / float(cutflow[i-1])
+    try:
+        assert (i > 0)
+        return float(cutflow[i]) / float(cutflow[i-1])
+    except AssertionError:
+        return 1.
 
 def base_efficiency(cutflow, i):
     return float(cutflow[i]) / float(cutflow[0])
@@ -114,7 +118,6 @@ def main():
     efficiency_merged_xp = []
     efficiency_merged_sa = []
     for i, cut in enumerate(v_cutflow_simpleanalysis_merged):
-        if i == 0: continue
         cut_xp = v_cutflow_xampp_merged[i]
         cut_sa = v_cutflow_simpleanalysis_merged[i]
         eff_xp = base_efficiency(v_cutflow_xampp_merged, i)
@@ -134,7 +137,6 @@ def main():
     efficiency_resolved_xp = []
     efficiency_resolved_sa = []
     for i, cut in enumerate(v_cutflow_simpleanalysis_resolved):
-        if i == 0: continue
         cut_xp = v_cutflow_xampp_resolved[i]
         cut_sa = v_cutflow_simpleanalysis_resolved[i]
         eff_xp = base_efficiency(v_cutflow_xampp_resolved, i)
