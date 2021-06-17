@@ -6,18 +6,18 @@ import numpy as np
 def getArgumentParser():
     parser = ArgumentParser()
     parser.add_argument('--mzp_min', default=500)
-    parser.add_argument('--mzp_max', default=3500)
+    parser.add_argument('--mzp_max', default=5000)
     parser.add_argument('--mzp_step', default=500)
 
     parser.add_argument('--mdh_min', default=50)
     parser.add_argument('--mdh_max', default=170)
     parser.add_argument('--mdh_step', default=20)
 
-    parser.add_argument('--mdm_min', default=50)
-    parser.add_argument('--mdm_max', default=500)
-    parser.add_argument('--mdm_step', default=50)
+    parser.add_argument('--mdm_min', default=100)
+    parser.add_argument('--mdm_max', default=1100)
+    parser.add_argument('--mdm_step', default=100)
 
-    parser.add_argument('--gx', nargs='+', default=[0.1, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 2.5, 3.0])
+    parser.add_argument('--gx', nargs='+', default=[0.1, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5])
 
     parser.add_argument('--dsid_start', default=100000)
 
