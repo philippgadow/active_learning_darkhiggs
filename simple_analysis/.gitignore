@@ -1,2 +1,4 @@
 .asetup.save
 *.root
+SimpleAnalysis/build/
+SimpleAnalysis/run/

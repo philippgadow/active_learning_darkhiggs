@@ -214,8 +214,7 @@ void METHbb2018::ProcessEvent(AnalysisEvent *event) {
   bool evtsel_nbjets = (nBjets >=2);
   bool evtsel_mass40_resolved = (mHiggs > 40.);
   bool evtsel_massRange_resolved = (mHiggs > 50. && mHiggs < 280.);
-  // bool evtsel_metSig = (metSignificance > 12.);
-  bool evtsel_metSig = true; // not implemented on truth level due to poor agreement with reco-level
+  bool evtsel_metSig = (metSignificance > 12.);
 
   bool evtsel_mt_mindR = (mt_min > 170.);
   bool evtsel_mt_maxdR = (mt_max > 200.);
