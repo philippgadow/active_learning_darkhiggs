@@ -19,6 +19,7 @@ def getArgumentParser():
     parser.add_argument('--mdm', default='0')
     parser.add_argument('--gq', default='0.25')
     parser.add_argument('--gx', default='1.00')
+    parser.add_argument('--scale_factor_merged', default=1., help="Custom factor to increase event yield in merged regions")
     return parser
 
 
@@ -63,6 +64,7 @@ def main():
     args = getArgumentParser().parse_args()
     cross_section = getCrossSection(args.cross_section)
     events = getInitialEvents(args.acceptances)
+    sf_merged = float(args.scale_factor_merged)
 
     yields = {}
     with uproot.open(args.inputFile) as f:
@@ -75,6 +77,12 @@ def main():
         yields['MET200350_3b'] = f['MET200350_3b'].values()
         yields['MET350500_3b'] = f['MET350500_3b'].values()
         yields['MET500_3b'] = f['MET500_3b'].values()
+
+    # optionally scale the event yield in merged selection with custom scale factor
+    if sf_merged != 1.:
+        yields['MET500750_2b'] *= sf_merged
+        yields['MET750_2b'] *= sf_merged
+        yields['MET500_3b'] *= sf_merged
 
     for k in yields.keys():
         yields[k] *= (args.luminosity * cross_section / events)
