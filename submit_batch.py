@@ -3,7 +3,7 @@ import re
 import sys
 import argparse
 import logging
-from pprint import pformat
+from pprint import pformat, pprint
 from batch_management.condor_handler import CondorHandler
 
 
@@ -16,6 +16,7 @@ def getArgumentParser():
   parser = argparse.ArgumentParser()
   parser.add_argument("--batch_dir", default=None, help="Directory for batch submission files")
   parser.add_argument("--out_dir", default=None, help="Output directory for results")
+  parser.add_argument('--grid', default='grid.csv')
   parser.add_argument("--msglevel", default="info", choices=["info", "debug", "error"], help="Message output detail level.")
   return parser
 
@@ -82,56 +83,10 @@ def main():
 
   # parameters (eventually to be outsourced to a config file)
   # dsid, mzp,mdh,mdm,gq,gx
-  job_parameters = [
-    "100000,500,50,200,0.25,1.0",
-    "100001,500,70,200,0.25,1.0",
-    "100002,500,90,200,0.25,1.0",
-    "100003,500,110,200,0.25,1.0",
-    "100004,500,130,200,0.25,1.0",
-    "100005,500,150,200,0.25,1.0",
-
-    "100006,1000,50,200,0.25,1.0",
-    "100007,1000,70,200,0.25,1.0",
-    "100008,1000,90,200,0.25,1.0",
-    "100009,1000,110,200,0.25,1.0",
-    "100010,1000,130,200,0.25,1.0",
-    "100011,1000,150,200,0.25,1.0",
-
-    "100012,1500,50,200,0.25,1.0",
-    "100013,1500,70,200,0.25,1.0",
-    "100014,1500,90,200,0.25,1.0",
-    "100015,1500,110,200,0.25,1.0",
-    "100016,1500,130,200,0.25,1.0",
-    "100017,1500,150,200,0.25,1.0",
-
-    "100018,2000,50,200,0.25,1.0",
-    "100019,2000,70,200,0.25,1.0",
-    "100020,2000,90,200,0.25,1.0",
-    "100021,2000,110,200,0.25,1.0",
-    "100022,2000,130,200,0.25,1.0",
-    "100023,2000,150,200,0.25,1.0",
-
-    "100024,2500,50,200,0.25,1.0",
-    "100025,2500,70,200,0.25,1.0",
-    "100026,2500,90,200,0.25,1.0",
-    "100027,2500,110,200,0.25,1.0",
-    "100028,2500,130,200,0.25,1.0",
-    "100029,2500,150,200,0.25,1.0",
-
-    "100030,3000,50,200,0.25,1.0",
-    "100031,3000,70,200,0.25,1.0",
-    "100032,3000,90,200,0.25,1.0",
-    "100033,3000,110,200,0.25,1.0",
-    "100034,3000,130,200,0.25,1.0",
-    "100035,3000,150,200,0.25,1.0",
-    
-    "100036,3500,50,200,0.25,1.0",
-    "100037,3500,70,200,0.25,1.0",
-    "100038,3500,90,200,0.25,1.0",
-    "100039,3500,110,200,0.25,1.0",
-    "100040,3500,130,200,0.25,1.0",
-    "100041,3500,150,200,0.25,1.0"
-  ]
+  job_parameters = []
+  with open(args.grid) as f:
+    for l in f: job_parameters.append(l.strip())
+  pprint(job_parameters)
 
   # create directories for condor submission and output
   logging.info("Preparing batch job submission...")
