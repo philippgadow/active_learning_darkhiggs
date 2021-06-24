@@ -29,3 +29,6 @@ cd -
 cp $RUN_DIR/${ANALYSIS}.txt ${INPUT_DIR}/acceptances.txt
 cp $RUN_DIR/${ANALYSIS}.root ${INPUT_DIR}/histograms.root
 cat ${INPUT_DIR}/acceptances.txt
+
+# clean up
+rm -rf ${RUN_DIR}

@@ -97,6 +97,9 @@ def main():
   logging.info("Submitting jobs...")
   for data in job_parameters:
     dsid, mzp, mdh, mdm, gq, gx = data.split(',')
+    mzp = round(float(mzp))
+    mdh = round(float(mdh))
+    mdm = round(float(mdm))
     submitJob(batch_dir, dsid, mzp, mdh, mdm, gq, gx)
 
 

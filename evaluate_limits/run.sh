@@ -3,10 +3,6 @@
 ##############
 # parameters #
 ##############
-# # DSID - just for bookkeeping
-# if [[ -z "${DSID}" ]]; then
-#   DSID=100000
-# fi
 
 DSID=$1
 

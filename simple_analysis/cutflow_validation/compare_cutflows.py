@@ -24,15 +24,20 @@ def base_efficiency(cutflow, i):
 
 def plotCutFlow(h_xampp, h_simpleanalysis, labels, output):
     fig, ax = plt.subplots()
-    ax.plot(h_xampp, '+')
-    ax.plot(h_simpleanalysis, '+')
+    ax.plot(h_xampp, '+', color='darkgreen', label='reco')
+    ax.plot(h_simpleanalysis, '+', color='cornflowerblue', label='truth')
     ax.set_xticks(np.arange(len(labels)))
     ax.set_xticklabels(labels)
     plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
         rotation_mode="anchor")
     ax.set_ylabel('Cut efficiency')
+    plt.legend()
     fig.tight_layout()
     fig.savefig('{output}.png'.format(output=output))
+    ax.set_ylim([0.001, 2.])
+    ax.set_yscale('log')
+    fig.tight_layout()
+    fig.savefig('{output}_log.png'.format(output=output))
 
 def main():
     # get input files

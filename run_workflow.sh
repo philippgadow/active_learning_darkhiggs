@@ -29,3 +29,8 @@ cd -
 cd evaluate_yields
 bash run.sh $DSID $MZP $MDH $MDM $GQ $GX $EVENTS
 cd -
+
+# clean up to save some space
+rm -rf generate_signal/workdir_evgen/${DSID}/
+rm -rf generate_signal/workdir_derivation/${DSID}/
+rm data/${DSID}/DAOD_TRUTH1.test_DMSbb_${DSID}.root
