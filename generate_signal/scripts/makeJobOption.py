@@ -45,7 +45,7 @@ def makeJobOption(mzp, mdh, mdm, gq, gx, dsid, template, topJobOption, outputDir
 
     # create JobOption from template
     with open(template) as fin:
-        outFile = fin.read().replace("#GQ", gq).replace("#GX", gx)
+        outFile = fin.read().replace("#GQ", "{0:.2f}".format(float(gq))).replace("#GX", "{0:.2f}".format(float(gx)))
         outFileName = "mc.MGPy8EG_DMSbb_zp{mzp}_dm{mdm}_dh{mdh}_gq{gq}_gx{gx}.py".format(
             mzp=mzp, mdh=mdh, mdm=mdm,
             gq="{0:.2f}".format(float(gq)).replace('.', 'p'),
