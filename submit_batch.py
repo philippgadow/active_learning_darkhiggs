@@ -100,8 +100,8 @@ def main():
     mzp = round(float(mzp))
     mdh = round(float(mdh))
     mdm = round(float(mdm))
-    submitJob(batch_dir, dsid, mzp, mdh, mdm, gq, gx)
-
+    if not os.path.isfile(os.path.join('data', dsid, 'histograms.root')):
+      submitJob(batch_dir, dsid, mzp, mdh, mdm, gq, gx)
 
 if __name__ == '__main__':
   main()
