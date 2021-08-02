@@ -96,6 +96,7 @@ def main():
   # submit jobs
   logging.info("Submitting jobs...")
   for data in job_parameters:
+    if not data.split(): continue
     dsid, mzp, mdh, mdm, gq, gx = data.split(',')
     mzp = round(float(mzp))
     mdh = round(float(mdh))
