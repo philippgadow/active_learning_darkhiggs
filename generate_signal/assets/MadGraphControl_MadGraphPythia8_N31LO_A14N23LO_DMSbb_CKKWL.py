@@ -6,7 +6,7 @@ from MadGraphControl.MadGraphUtils import *
 # Settings
 #####################
 # safe factor to ensure a sufficient number of event has been generated
-safefactor=2.5
+safefactor=4
 
 # determine whether MadGraph reweight module should be run
 try:
