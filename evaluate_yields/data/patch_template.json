@@ -1,0 +1,243 @@
+{
+    "metadata": {
+        "analysis_id": "ANA-EXOT-2018-46",
+        "description": "Signal patchset for the ATLAS Exotics mono-Hbb analysis (dark Higgs)",
+        "digests": {
+            "sha256": "173b3629bbe8b3a67e8cace2b8f748e6a3c7c3f02f0231f728cc0986de6828d8"
+        },
+        "labels": [
+            "mzp",
+            "ms",
+            "mdm",
+            "gq",
+            "gx"
+        ],
+        "references": {
+            "hepdata": "ins0000000"
+        }
+    },
+    "patches": [
+        {
+            "metadata": {
+                "name": "#SIGNALNAME",
+                "values": [
+                    #MZP,
+                    #MDH,
+                    #MDM,
+                    #GQ,
+                    #GX
+                ]
+            },
+            "patch": [
+                {
+                    "op": "add",
+                    "path": "/channels/16/samples/13",
+                    "value": {
+                        "data": [#REGION_MET150200_3b],
+                        "modifiers": [
+                            {
+                                "data": {
+                                    "hi": 1.017,
+                                    "lo": 0.983
+                                },
+                                "name": "ATLAS_LUMI",
+                                "type": "normsys"
+                            },
+                            {
+                                "data": null,
+                                "name": "SigXsecOverSM",
+                                "type": "normfactor"
+                            }
+                        ],
+                        "name": "#SIGNALNAME"
+                    }
+                },
+                {
+                    "op": "add",
+                    "path": "/channels/17/samples/13",
+                    "value": {
+                        "data": [#REGION_MET150200_2b],
+                        "modifiers": [
+                            {
+                                "data": {
+                                    "hi": 1.017,
+                                    "lo": 0.983
+                                },
+                                "name": "ATLAS_LUMI",
+                                "type": "normsys"
+                            },
+                            {
+                                "data": null,
+                                "name": "SigXsecOverSM",
+                                "type": "normfactor"
+                            }
+                        ],
+                        "name": "#SIGNALNAME"
+                    }
+                },
+                {
+                    "op": "add",
+                    "path": "/channels/18/samples/13",
+                    "value": {
+                        "data": [#REGION_MET200350_3b],
+                        "modifiers": [
+                            {
+                                "data": {
+                                    "hi": 1.017,
+                                    "lo": 0.983
+                                },
+                                "name": "ATLAS_LUMI",
+                                "type": "normsys"
+                            },
+                            {
+                                "data": null,
+                                "name": "SigXsecOverSM",
+                                "type": "normfactor"
+                            }
+                        ],
+                        "name": "#SIGNALNAME"
+                    }
+                },
+                {
+                    "op": "add",
+                    "path": "/channels/19/samples/13",
+                    "value": {
+                        "data": [#REGION_MET200350_2b],
+                        "modifiers": [
+                            {
+                                "data": {
+                                    "hi": 1.017,
+                                    "lo": 0.983
+                                },
+                                "name": "ATLAS_LUMI",
+                                "type": "normsys"
+                            },
+                            {
+                                "data": null,
+                                "name": "SigXsecOverSM",
+                                "type": "normfactor"
+                            }
+                        ],
+                        "name": "#SIGNALNAME"
+                    }
+                },
+                {
+                    "op": "add",
+                    "path": "/channels/20/samples/12",
+                    "value": {
+                        "data": [#REGION_MET350500_3b],
+                        "modifiers": [
+                            {
+                                "data": {
+                                    "hi": 1.017,
+                                    "lo": 0.983
+                                },
+                                "name": "ATLAS_LUMI",
+                                "type": "normsys"
+                            },
+                            {
+                                "data": null,
+                                "name": "SigXsecOverSM",
+                                "type": "normfactor"
+                            }
+                        ],
+                        "name": "#SIGNALNAME"
+                    }
+                },
+                {
+                    "op": "add",
+                    "path": "/channels/21/samples/13",
+                    "value": {
+                        "data": [#REGION_MET350500_2b],
+                        "modifiers": [
+                            {
+                                "data": {
+                                    "hi": 1.017,
+                                    "lo": 0.983
+                                },
+                                "name": "ATLAS_LUMI",
+                                "type": "normsys"
+                            },
+                            {
+                                "data": null,
+                                "name": "SigXsecOverSM",
+                                "type": "normfactor"
+                            }
+                        ],
+                        "name": "#SIGNALNAME"
+                    }
+                },
+                {
+                    "op": "add",
+                    "path": "/channels/22/samples/13",
+                    "value": {
+                        "data": [#REGION_MET500750_2b],
+                        "modifiers": [
+                            {
+                                "data": {
+                                    "hi": 1.017,
+                                    "lo": 0.983
+                                },
+                                "name": "ATLAS_LUMI",
+                                "type": "normsys"
+                            },
+                            {
+                                "data": null,
+                                "name": "SigXsecOverSM",
+                                "type": "normfactor"
+                            }
+                        ],
+                        "name": "#SIGNALNAME"
+                    }
+                },
+                {
+                    "op": "add",
+                    "path": "/channels/23/samples/12",
+                    "value": {
+                        "data": [#REGION_MET500_3b],
+                        "modifiers": [
+                            {
+                                "data": {
+                                    "hi": 1.017,
+                                    "lo": 0.983
+                                },
+                                "name": "ATLAS_LUMI",
+                                "type": "normsys"
+                            },
+                            {
+                                "data": null,
+                                "name": "SigXsecOverSM",
+                                "type": "normfactor"
+                            }
+                        ],
+                        "name": "#SIGNALNAME"
+                    }
+                },
+                {
+                    "op": "add",
+                    "path": "/channels/24/samples/12",
+                    "value": {
+                        "data": [#REGION_MET750_2b],
+                        "modifiers": [
+                            {
+                                "data": {
+                                    "hi": 1.017,
+                                    "lo": 0.983
+                                },
+                                "name": "ATLAS_LUMI",
+                                "type": "normsys"
+                            },
+                            {
+                                "data": null,
+                                "name": "SigXsecOverSM",
+                                "type": "normfactor"
+                            }
+                        ],
+                        "name": "#SIGNALNAME"
+                    }
+                }
+            ]
+        }
+    ],
+    "version": "1.0.0"
+}
