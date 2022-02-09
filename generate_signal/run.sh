@@ -54,6 +54,9 @@ python scripts/extractRunInfo.py -i "$EVGEN_WORKDIR/log.generate" -o "${OUTPUT_D
 # copy derivation file to output directory
 cp $DERIVATION_WORKDIR/DAOD_TRUTH1.test_DMSbb_${DSID}.root ${OUTPUT_DIR}/
 
+# copy log file to output directory
+cp $EVGEN_WORKDIR/log.generate ${OUTPUT_DIR}/
+
 # clean up
-# rm -rf ${EVGEN_DIR}/
-# rm -rf ${DERIVATION_WORKDIR}/
+rm -rf ${EVGEN_DIR}/
+rm -rf ${DERIVATION_WORKDIR}/

@@ -11,7 +11,4 @@ th = 0.01
 # default number of events
 evgenConfig.nEventsPerJob = 10000
 
-# activate MadGraph reweight in g(x)
-reweight = False
-
 include("MadGraphControl_MadGraphPythia8_N31LO_A14N23LO_DMSbb_CKKWL.py")
