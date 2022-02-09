@@ -4,5 +4,5 @@
 python makeOfficialJobOptionGrid.py ../grids/grid_10_mcrequest00.csv
 
 cd 100xxx
-tar -cvhf ../joboptions.tar.gz .
+tar -cvf ../joboptions.tar.gz .
 cd ..
