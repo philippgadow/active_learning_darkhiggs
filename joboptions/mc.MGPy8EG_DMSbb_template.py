@@ -10,5 +10,5 @@ th = 0.01
 
 # default number of events
 evgenConfig.nEventsPerJob = 10000
+include("MadGraphControl_MadGraphPythia8_N30NLO_A14N23LO_monoSbb_CKKWL.py")
 
-include("MadGraphControl_MadGraphPythia8_N31LO_A14N23LO_DMSbb_CKKWL.py")

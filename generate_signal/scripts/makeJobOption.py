@@ -22,7 +22,7 @@ def getArguments():
     parser.add_argument(
         "--topJobOption",
         default=join(
-            "assets", "MadGraphControl_MadGraphPythia8_N31LO_A14N23LO_DMSbb_CKKWL.py"
+            "assets", "MadGraphControl_MadGraphPythia8_N30NLO_A14N23LO_monoSbb_CKKWL.py"
         ),
         help="Path to top level job option",
     )
