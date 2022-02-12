@@ -2,6 +2,8 @@
 ##############
 # parameters #
 ##############
+set -x
+
 DSID=$1
 MZP=$2
 MDH=$3
@@ -18,7 +20,7 @@ DERIVATION_FILE="test_DMSbb_${DSID}.root"
 export EVGEN_WORKDIR="workdir_evgen/${DSID}"
 export DERIVATION_WORKDIR="workdir_derivation/${DSID}"
 OUTPUT_DIR="../data/${DSID}"
-mkdir -p ${OUTPUT_DIR} ${EVGEN_DIR} ${DERIVATION_WORKDIR}
+mkdir -p ${OUTPUT_DIR} ${EVGEN_WORKDIR} ${DERIVATION_WORKDIR}
 
 # event generation
 source setup_evgen.sh
@@ -58,5 +60,5 @@ cp $DERIVATION_WORKDIR/DAOD_TRUTH1.test_DMSbb_${DSID}.root ${OUTPUT_DIR}/
 cp $EVGEN_WORKDIR/log.generate ${OUTPUT_DIR}/
 
 # clean up
-rm -rf ${EVGEN_DIR}/
+rm -rf ${EVGEN_WORKDIR}/
 rm -rf ${DERIVATION_WORKDIR}/

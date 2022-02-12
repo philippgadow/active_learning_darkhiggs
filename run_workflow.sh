@@ -8,6 +8,7 @@ MDM=$4
 GQ=$5
 GX=$6
 EVENTS=10000
+EVENTS=1000
 
 # generate signal + compute cross-section
 cd generate_signal

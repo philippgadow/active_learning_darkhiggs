@@ -18,6 +18,7 @@ def getArgumentParser():
   parser.add_argument("--out_dir", default=None, help="Output directory for results")
   parser.add_argument('--grid', default='grid.csv')
   parser.add_argument("--msglevel", default="info", choices=["info", "debug", "error"], help="Message output detail level.")
+  parser.add_argument("--start_dsid", default=100000, help="Start to incremental DSID generation")
   return parser
 
 
@@ -92,17 +93,19 @@ def main():
   logging.info("Preparing batch job submission...")
   batch_dir = args.batch_dir if args.batch_dir else os.path.join(os.getcwd(), "condor")
   ensureDirsExist([batch_dir])
-
+  
+  dsid = args.start_dsid
   # submit jobs
   logging.info("Submitting jobs...")
   for data in job_parameters:
     if not data.split(): continue
-    dsid, mzp, mdh, mdm, gq, gx = data.split(',')
+    _, mzp, mdh, mdm, gq, gx = data.split(',')
     mzp = round(float(mzp))
     mdh = round(float(mdh))
     mdm = round(float(mdm))
-    if not os.path.isfile(os.path.join('data', dsid, 'histograms.root')):
-      submitJob(batch_dir, dsid, mzp, mdh, mdm, gq, gx)
+    if not os.path.isfile(os.path.join('data', str(dsid), 'histograms.root')):
+      submitJob(batch_dir, str(dsid), mzp, mdh, mdm, gq, gx)
+    dsid += 1
 
 if __name__ == '__main__':
   main()

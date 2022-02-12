@@ -16,10 +16,12 @@ def main():
         for l in f: job_parameters.append(l.strip())
 
     outputDir = '100xxx'
+    dsid = 100010
     template = 'mc.MGPy8EG_DMSbb_template.py'
     for data in job_parameters:
         if not data.split(): continue
-        dsid, mzp, mdh, mdm, gq, gx = data.split(',')
+        _, mzp, mdh, mdm, gq, gx = data.split(',')
+        
         mzp = round(float(mzp))
         mdh = round(float(mdh))
         mdm = round(float(mdm))
@@ -30,11 +32,12 @@ def main():
             mdm,
             gq,
             gx,
-            dsid,
+            str(dsid),
             template,
             outputDir,
-            copyLog=True
+            copyLog=True,
         )
+        dsid += 1
 
 
 if __name__ == '__main__':
